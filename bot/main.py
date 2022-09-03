@@ -12,8 +12,8 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='$', intents=intents)
 
 TOKEN = os.getenv('DISCORD_TOKEN')
-print(os.getcwd())
-with open('/bot/db/static_values.txt') as f:
+
+with open('bot/db/static_values.txt') as f:
   consts = f.read()
 consts = ast.literal_eval(consts)
 
