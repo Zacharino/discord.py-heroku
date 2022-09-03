@@ -56,8 +56,8 @@ async def boss(ctx, arg):
 
         embed_msg = discord.Embed(title=embed_title, description='Our RL submission for ' + boss_name + '. \nMake sure to add your PoVs.', colour=0x1c1c1c, url=arg)
         embed_msg.set_image(url=thumbnail)
-        embed_msg.add_field(name='Roster', value='\u200b\n', inline=True)
-        embed_msg.add_field(name='PoVs', value='\u200b\n', inline=True)
+        embed_msg.add_field(name='Roster', value='\u200b', inline=True)
+        embed_msg.add_field(name='PoVs', value='\u200b', inline=True)
 
         message_id = ''
 
@@ -77,7 +77,7 @@ async def boss(ctx, arg):
             msg_content = msg.content
             joined_msg = "".join(msg_content)
             formatted_msg = joined_msg.replace(' ', '\n')
-            if old_roster_value == "\u200b\n":
+            if old_roster_value == "\u200b":
               new_roster_value = formatted_msg
             else:
               new_roster_value = old_roster_value + "\n" + formatted_msg
@@ -101,7 +101,7 @@ async def boss(ctx, arg):
             msg = await bot.wait_for("message", check=check)
             msg_content = msg.content
             formatted_msg = "".join(msg_content)
-            if old_pov_value == "\u200b\n":
+            if old_pov_value == "\u200b":
               new_pov_value = formatted_msg
             else:
               new_pov_value = old_pov_value + "\n" + formatted_msg
@@ -117,7 +117,7 @@ async def boss(ctx, arg):
           async def delete_roster_button_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
             embed_msg.set_field_at(0, name="Roster", value='\u200b\n', inline=True)
             await message.edit(embed=embed_msg)
-            if(embed_msg.fields[1].value == '\u200b\n'):
+            if(embed_msg.fields[1].value == '\u200b'):
               await interaction.response.send_message("Nothing to remove you monkey!", ephemeral=True)
             else:
               await interaction.response.send_message("Roster removed successfully!", ephemeral=True)
@@ -128,15 +128,13 @@ async def boss(ctx, arg):
 
             old_pov_value = embed_msg.fields[1].value
             old_pov_value_split = old_pov_value.split('\n')
-            print(len(old_pov_value_split))
-            print(old_pov_value_split)
             if(len(old_pov_value_split)>1):
               new_pov_value = '\n'.join(old_pov_value_split[:-1])
               embed_msg.set_field_at(1, name="PoVs", value=new_pov_value, inline=True)
               await message.edit(embed=embed_msg)
               await interaction.response.send_message("Latest PoV entry removed successfully!", ephemeral=True)
-            elif(len(old_pov_value_split)==2 and old_pov_value_split[0]!='\u200b'):
-              embed_msg.set_field_at(1, name="PoVs", value='\u200b\n', inline=True)
+            elif(len(old_pov_value_split)==1 and old_pov_value_split[0]!='\u200b'):
+              embed_msg.set_field_at(1, name="PoVs", value='\u200b', inline=True)
               await message.edit(embed=embed_msg)
               await interaction.response.send_message("Latest PoV entry removed successfully!", ephemeral=True)
             else:
