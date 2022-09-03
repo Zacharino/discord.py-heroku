@@ -53,7 +53,6 @@ async def boss(ctx, arg):
         thumbnail = consts.get(boss_value + '-thumb')
 
         embed_title = boss_name + ' ' + str(kill_date)
-
         embed_msg = discord.Embed(title=embed_title, description='Our RL submission for ' + boss_name + '. \nMake sure to add your PoVs.', colour=0x1c1c1c, url=arg)
         embed_msg.set_image(url=thumbnail)
         embed_msg.add_field(name='Roster', value='\u200b', inline=True)
@@ -115,12 +114,12 @@ async def boss(ctx, arg):
           # REMOVE ROSTER BUTTON
           @discord.ui.button(label='Remove Roster', style=discord.ButtonStyle.red)
           async def delete_roster_button_callback(self, interaction: discord.Interaction, button: discord.ui.Button):
-            embed_msg.set_field_at(0, name="Roster", value='\u200b\n', inline=True)
-            await message.edit(embed=embed_msg)
-            if(embed_msg.fields[1].value == '\u200b'):
+            if(embed_msg.fields[0].value == '\u200b'):
               await interaction.response.send_message("Nothing to remove you monkey!", ephemeral=True)
             else:
               await interaction.response.send_message("Roster removed successfully!", ephemeral=True)
+              embed_msg.set_field_at(0, name="Roster", value='\u200b', inline=True)
+              await message.edit(embed=embed_msg)
 
           # REMOVE POV BUTTON
           @discord.ui.button(label='Remove PoV', style=discord.ButtonStyle.red)
