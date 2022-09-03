@@ -1,6 +1,2 @@
 discord.py==2.0.1
-os
-ast
-re
 dotenv
-datetime
