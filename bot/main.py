@@ -3,7 +3,6 @@ import os
 import ast
 import discord
 import re
-from dotenv import load_dotenv
 from discord.ext import commands
 from datetime import datetime
 
