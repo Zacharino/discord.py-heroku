@@ -43,6 +43,7 @@ async def boss(ctx, arg):
     author_id = ctx.message.author.id
     try:
       boss_value = arg.split('_')[1]
+      print(boss_value)
     except:
       ctx.send("Pls use dps.report link")
     else:
