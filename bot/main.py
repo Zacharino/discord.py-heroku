@@ -36,10 +36,10 @@ async def clear(ctx, amount=None): # Set default value as None
 
 @bot.command()
 async def boss(ctx, arg):
-  p = re.compile("[a-zA-Z]+://[a-zA-Z]+\.[a-zA-Z]+/4[a-zA-Z]+([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?_[a-zA-Z]+")
+  #p = re.compile("[a-zA-Z]+://[a-zA-Z]+\.[a-zA-Z]+/4[a-zA-Z]+([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?([+-]?(?=\.\d|\d)(?:\d+)?(?:\.?\d*))(?:[eE]([+-]?\d+))?_[a-zA-Z]+")
   boss_name = ''
   thumbnail = ''
-  if(re.search(p, arg)):
+  #if(re.search(p, arg)):
     author_id = ctx.message.author.id
     try:
       boss_value = arg.split('_')[1]
@@ -149,8 +149,8 @@ async def boss(ctx, arg):
       else:
         await ctx.send('Name not found - ping the fuck out of Zach', delete_after=1)
 
-  else:
-    await ctx.send("Incorrect URL! Please try running the command again with a different URL.", delete_after=1)
+ # else:
+    #await ctx.send("Incorrect URL! Please try running the command again with a different URL.", delete_after=1)
 
 @bot.event
 async def on_message(message):
